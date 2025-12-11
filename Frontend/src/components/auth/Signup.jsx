@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import ErrorMessages from "../common/errorMessages";
 
 const Signup = () => {
+  const [errorMessages, setErrorMessages] = useState([]);
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -12,6 +15,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessages([]);
 
     fetch("http://localhost:3000/api/auth/signup", {
       method: "POST",
@@ -27,20 +31,22 @@ const Signup = () => {
         userType: userTypeRef.current.value,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) => {
         if (res.status === 201) {
           navigate("/login");
+        } else if (res.status === 422) {
+          console.log(res)
+          return res.json();
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .then(({errorMessages}) => setErrorMessages(errorMessages));
   };
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg p-8">
       <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+
+      <ErrorMessages errorMessages={errorMessages} />
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
           type="text"

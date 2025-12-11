@@ -1,29 +1,28 @@
-import { check } from "express-validator";
-
+const { check } = require("express-validator");
 // First Name Validator.
-export const firstNameValidator = check("firstName")
+const firstNameValidator = check("firstName")
   .notEmpty()
   .withMessage("First name is mandatory")
   .trim()
   .isLength({ min: 2 })
   .withMessage("First name should be minimum 4 chars")
   .matches(/^[a-zA-Z\s]+$/)
-  .withMessage("First name should be only contain english latters");
+  .withMessage("First name should be only contain english alphabets");
 
 // last Name Validator.
-export const lastNameValidator = check("lastName")
+const lastNameValidator = check("lastName")
   .trim()
   .matches(/^[a-zA-Z\s]*$/)
-  .withMessage("last name should be only contain english latters");
+  .withMessage("last name should be only contain english alphabets");
 
 // Email Validator.
-export const emailValidator = check("email")
+const emailValidator = check("email")
   .isEmail()
   .withMessage("Please Enter a vaild email")
   .normalizeEmail();
 
 // Password Validator.
-export const passwordValidator = check("password")
+const passwordValidator = check("password")
   .trim()
   .isLength({ min: 8 })
   .withMessage("Password should be minimum 8 chars")
@@ -34,8 +33,7 @@ export const passwordValidator = check("password")
   .matches(/[!@#$%^&*()\-_=+\[\]{};:'",.<>\/?\\|]/)
   .withMessage("Password must contain at least one special character");
 
-// conform Password Validator.
-export const confirmPasswordValidator = check("confirm_password")
+const confirmPasswordValidator = check("confirmPassword")
   .trim()
   .custom((value, { req }) => {
     if (value !== req.body.password) {
@@ -45,9 +43,18 @@ export const confirmPasswordValidator = check("confirm_password")
   });
 
 // UserType Validator.
-export const userTypeValidator = check("userType")
+const userTypeValidator = check("userType")
   .trim()
   .notEmpty()
   .withMessage("User type must be required")
   .isIn(["seller", "customer"])
   .withMessage("User type is invaild");
+
+module.exports = {
+  firstNameValidator,
+  lastNameValidator,
+  emailValidator,
+  passwordValidator,
+  confirmPasswordValidator,
+  userTypeValidator,
+};  
