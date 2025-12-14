@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AddProduct = () => {
   const nameRef = useRef();
@@ -10,8 +11,9 @@ const AddProduct = () => {
   const ratingRef = useRef();
   const imageRef = useRef();
   const navigate = useNavigate();
+  const { token } = useSelector((state) => state.auth);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", nameRef.current.value);
@@ -22,18 +24,19 @@ const AddProduct = () => {
     formData.append("rating", parseFloat(ratingRef.current.value));
     formData.append("image", imageRef.current.files[0]);
 
-    fetch("http://localhost:3000/api/seller/products", {
+    const response = await fetch("http://localhost:3000/api/seller/products", {
       method: "POST",
       body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        navigate("/")
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 201) {
+      navigate("/");
+    } else {
+      const errorData = await response.json();
+      console.log(errorData);
+    }
   };
 
   return (
@@ -41,7 +44,11 @@ const AddProduct = () => {
       <h1 className="text-3xl font-extrabold text-blue-700 mb-6 text-center">
         Add Product
       </h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5" encType="multipart/form-data">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5"
+        encType="multipart/form-data"
+      >
         <input
           type="text"
           placeholder="Product Name"

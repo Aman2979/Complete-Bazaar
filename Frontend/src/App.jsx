@@ -3,6 +3,7 @@ import AddProduct from "./components/seller/AddProduct.jsx";
 import NavBar from "./nav/NavBar";
 import Signup from "./components/auth/Signup.jsx";
 import Login from "./components/auth/Login.jsx";
+import Home from "./components/seller/Home.jsx";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <div>
           <NavBar />
           <Routes>
-            <Route path="/" element={<div>Home Page</div>} />
+            <Route path="/" element={<Home />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

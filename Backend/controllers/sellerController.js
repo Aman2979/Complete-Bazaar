@@ -2,9 +2,10 @@ const Product = require("../models/Product");
 
 exports.createProduct = async (req, res, next) => {
   const { name, brand, price, description, category, rating } = req.body;
+  const sellerId = req.userId;
 
   if (!req.file) {
-    return res.status(400).json({ message: "Image file is required" });
+    return res.status(400).json({ message: "No image provided" });
   }
   const imageUrl = req.file.path;
   try {
@@ -16,7 +17,7 @@ exports.createProduct = async (req, res, next) => {
       category,
       rating,
       imageUrl,
-      reviews: 0,
+      seller: sellerId,
     });
     await product.save();
     res.status(201).json(product);

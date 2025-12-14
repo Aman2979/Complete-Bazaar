@@ -34,12 +34,12 @@ const Signup = () => {
       .then((res) => {
         if (res.status === 201) {
           navigate("/login");
-        } else if (res.status === 422) {
-          console.log(res)
+        } else {
           return res.json();
         }
       })
-      .then(({errorMessages}) => setErrorMessages(errorMessages));
+      .then(({ errorMessages }) => setErrorMessages(errorMessages))
+      .catch((err) => setErrorMessages([err.message]));
   };
 
   return (
