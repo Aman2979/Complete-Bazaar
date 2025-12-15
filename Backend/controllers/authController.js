@@ -65,7 +65,7 @@ exports.login = async (req, res, next) => {
         userType: user.userType,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "10h" }
     );
 
     res.status(200).json({ token, userType: user.userType });

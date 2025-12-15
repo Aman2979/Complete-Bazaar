@@ -25,3 +25,20 @@ exports.createProduct = async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.getSellerProducts = async (req, res, next) => {
+  const sellerId = req.userId;
+  try {
+    const products = await Product.find({ seller: sellerId });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  } 
+};
+
+
+exports.deleteProduct = async (req, res, next) => {
+  const productId = req.params.id;
+  await Product.findByIdAndDelete(productId);
+  res.status(200).json({ productId: productId });
+};
