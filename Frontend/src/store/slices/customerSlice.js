@@ -47,6 +47,47 @@ export const addToCart = createAsyncThunk(
   }
 );
 
+export const removeFromCart = createAsyncThunk(
+  "customer/removeFromCart",
+  async (productId) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+      `http://localhost:3000/api/customer/cart/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const body = await response.json();
+    if (response.status === 200) {
+      return body;
+    } else {
+      throw new Error(body.error);
+    }
+  }
+);
+
+export const placeOrder = createAsyncThunk(
+  "customer/placeOrder",
+  async (productId) => {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:3000/api/customer/order`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const body = await response.json();
+    if (response.status === 200) {
+      return body;
+    } else {
+      throw new Error(body.error);
+    }
+  }
+);
+
 const customerSlice = createSlice({
   name: "customer",
   initialState: initialState,
@@ -70,6 +111,13 @@ const customerSlice = createSlice({
       })
       .addCase(addToCart.fulfilled, (state, action) => {
         state.cart = action.payload;
+      })
+      .addCase(removeFromCart.fulfilled, (state, action) => {
+        state.cart = action.payload;
+      })
+      .addCase(placeOrder.fulfilled, (state, action) => {
+        state.cart.push(action.payload);
+        state.cart = [];
       });
   },
 });

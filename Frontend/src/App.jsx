@@ -6,8 +6,8 @@ import Login from "./components/auth/Login.jsx";
 import SellerHome from "./components/seller/SellerHome.jsx";
 import { useSelector } from "react-redux";
 import CustomerHome from "./components/customer/CustomerHome.jsx";
-import Cart from "./components/customer/Cart.jsx";
 import Orders from "./components/customer/Orders.jsx";
+import Cart from "./components/customer/cart/Cart.jsx";
 
 function App() {
   const { userType } = useSelector((state) => state.auth);

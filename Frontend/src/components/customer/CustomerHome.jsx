@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessages from "../common/ErrorMessages.jsx";
 import {
-  addToCart,
   fetchCustomerData,
 } from "../../store/slices/customerSlice.js";
 import CustomerProducts from "./CustomerProducts.jsx";
@@ -16,11 +15,7 @@ const CustomerHome = () => {
   useEffect(() => {
     dispatch(fetchCustomerData());
   }, [dispatch]);
-
-  const handleAddToCart = (productId) => {
-    dispatch(addToCart(productId));
-  };
-
+  
   if (isLoading) {
     return <p className="text-center mt-4">Loading products...</p>;
   }
@@ -78,7 +73,7 @@ const CustomerHome = () => {
             <CustomerProducts
               key={product.id}
               product={product}
-              handleAddToCart={handleAddToCart}
+              cart={cart}
             />
           ))}
         </div>
