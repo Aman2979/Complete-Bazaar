@@ -10,7 +10,7 @@ import Orders from "./components/customer/Orders.jsx";
 import Cart from "./components/customer/cart/Cart.jsx";
 import ForgetPassword from "./components/auth/ForgetPassword.jsx";
 import ResetPassword from "./components/auth/ResetPassword.jsx";
-import Footer from "./components/footer/Footer.jsx";
+// import Footer from "./components/footer/Footer.jsx";
 
 function App() {
   const { userType } = useSelector((state) => state.auth);
@@ -37,7 +37,7 @@ function App() {
             
           </Routes>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   );

@@ -51,9 +51,7 @@ const ResetPassword = () => {
         alert("Password reset successful. Please login.");
         navigate("/login");
       } else {
-        setErrorMessages(
-          data.errorMessages || ["Failed to reset password"]
-        );
+        setErrorMessages(data.errorMessages || ["Failed to reset password"]);
       }
     } catch (err) {
       setErrorMessages(["Unable to process request at this time"]);
@@ -64,18 +62,14 @@ const ResetPassword = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg p-8">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Reset Password
-      </h2>
+      <h2 className="text-2xl font-bold text-center mb-6">Reset Password</h2>
 
       <ErrorMessages errorMessages={errorMessages} />
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         {/* OTP */}
         <div>
-          <label className="block text-gray-700 font-medium mb-2">
-            OTP
-          </label>
+          <label className="block text-gray-700 font-medium mb-2">OTP</label>
           <input
             type="text"
             value={otp}
@@ -128,4 +122,3 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
-
