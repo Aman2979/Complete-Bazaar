@@ -27,7 +27,7 @@ const Orders = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">My Products</h1>
+      <h1 className="text-2xl font-bold mb-4">My All Orders</h1>
       <ErrorMessages errors={errorMessages} />
       {!sortedOrders || sortedOrders.length === 0 ? (
         <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded shadow-sm mt-6">

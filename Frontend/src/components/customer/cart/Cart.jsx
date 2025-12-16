@@ -25,7 +25,7 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">My Products</h1>
+      <h1 className="text-2xl font-bold mb-4">My All Cart Products</h1>
       <ErrorMessages errors={errorMessages} />
       <div className="flex flex-col md:flex-row gap-6 mt-4">
         <div className="w-full md:w-2/3">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import ErrorMessages from "../common/errorMessages";
+import ErrorMessages from "../common/ErrorMessages";
 
 const Signup = () => {
   const [errorMessages, setErrorMessages] = useState([]);

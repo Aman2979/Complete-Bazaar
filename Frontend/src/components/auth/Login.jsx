@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import ErrorMessages from "../common/errorMessages";
+import { useNavigate, Link } from "react-router-dom";
+import ErrorMessages from "../common/ErrorMessages";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/authSlice";
 
@@ -63,6 +63,14 @@ const Login = () => {
         >
           Login
         </button>
+        <div className="text-right">
+          <Link
+            to="/forgetPassword"
+            className="text-sm text-blue-600 hover:underline"
+          >
+            Forgot Password?
+          </Link>
+        </div>
       </form>
     </div>
   );

@@ -32,7 +32,7 @@ export const addToCart = createAsyncThunk(
     const response = await fetch(
       `http://localhost:3000/api/customer/cart/${productId}`,
       {
-        method: "Post",
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
