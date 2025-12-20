@@ -1,21 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorMessages from "../common/ErrorMessages.jsx";
-import { fetchCustomerData } from "../../store/slices/customerSlice.js";
-import CustomerProducts from "./CustomerProducts.jsx";
+import CustomerProducts from "./PublicProducts.jsx";
+import { fetchPublicProducts } from "../../store/slices/publicSlice.js";
 
-const CustomerHome = () => {
-  const { products, cart, isLoading, errorMessages } = useSelector(
-    (state) => state.customer
+const PublicHome = () => {
+  const { products, errorMessages, isLoading } = useSelector(
+    (state) => state.public
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCustomerData());
+    dispatch(fetchPublicProducts());
   }, [dispatch]);
-
-  // Just now
-  useEffect(() => {}, [products]);
 
   if (isLoading) {
     return (
@@ -27,24 +25,26 @@ const CustomerHome = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto p-4">
       <ErrorMessages errors={errorMessages} />
+
       {!products || products.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-tr from-blue-50 to-white rounded-xl shadow-md mt-10">
-          <h2 className="text-3xl font-extrabold text-blue-700 mb-4 drop-shadow-sm">
+        <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded shadow-sm mt-6">
+          <h2 className="text-2xl font-bold text-blue-700 mb-3">
             Welcome to Complete Bazaar!
           </h2>
-          <p className="text-gray-700 text-lg font-semibold mb-2">
+          <p className="text-gray-600 text-lg font-medium mb-2">
             Your one-stop marketplace for all your needs.
           </p>
-          <p className="text-gray-500 mb-3 text-center max-w-xl">
-            Start exploring our curated selection of products and enjoy seamless, secure shopping.
+          <p className="text-gray-500">
+            Start exploring our wide selection of products and enjoy seamless
+            shopping.
           </p>
         </div>
       ) : (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
           {products.map((product) => (
-            <CustomerProducts key={product._id} product={product} cart={cart} />
+            <CustomerProducts key={product._id} product={product} />
           ))}
         </div>
       )}
@@ -52,4 +52,4 @@ const CustomerHome = () => {
   );
 };
 
-export default CustomerHome;
+export default PublicHome;

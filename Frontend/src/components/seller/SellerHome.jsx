@@ -30,17 +30,21 @@ const SellerHome = () => {
       dispatch(deleteProduct());
     } else {
       const errorData = await response.json();
-      console.log(errorData);
     }
   };
 
   if (isLoading) {
-    return <p className="text-center mt-4">Loading products...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[55vh]">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-5"></div>
+        <p className="text-center text-lg text-gray-700 font-medium">Loading products...</p>
+      </div>
+    );
   }
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">My Products</h1>
+      <h1 className="text-2xl font-bold mb-4">Your Listed Products</h1>
       <ErrorMessages errors={errorMessages} />
       {!products || products.length === 0 ? (
         <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded shadow-sm mt-6">
@@ -89,7 +93,7 @@ const SellerHome = () => {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
           {products.map((product) => (
             <SelllerProducts
               key={product.id}

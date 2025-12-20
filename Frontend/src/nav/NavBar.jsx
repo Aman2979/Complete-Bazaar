@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store/slices/authSlice";
-import { FaShoppingCart, FaSignOutAlt, FaPlus, FaClipboardList, FaUserAlt, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import { FaShoppingCart, FaSignOutAlt, FaPlus, FaClipboardList, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import SearchBox from "../components/customer/searchBar/SearchBox";
 
 const NavBar = () => {
   const { isLoggedIn, userType } = useSelector((state) => state.auth);
@@ -27,7 +28,7 @@ const NavBar = () => {
             <div className="flex items-center gap-8 ml-4">
               <Link
                 to="/add-product"
-                className="flex items-center gap-2 text-base font-semibold text-indigo-100 bg-white bg-opacity-10 hover:bg-opacity-30 px-4 py-2 rounded-lg shadow transition-all duration-200 hover:scale-105"
+                className="flex items-center gap-2 text-base font-semibold text-indigo-600 bg-white bg-opacity-10 hover:bg-opacity-30 px-4 py-2 rounded-lg shadow transition-all duration-200 hover:scale-105"
               >
                 <FaPlus className="text-green-400" />
                 Add Product
@@ -50,6 +51,7 @@ const NavBar = () => {
                 <FaClipboardList className="text-blue-200" />
                 Orders
               </Link>
+              < SearchBox />
             </div>
           )}
         </div>
@@ -83,6 +85,7 @@ const NavBar = () => {
           </div>
         )}
       </div>
+        
     </nav>
   );
 };

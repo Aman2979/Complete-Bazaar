@@ -20,7 +20,12 @@ const Cart = () => {
   );
 
   if (isLoading) {
-    return <p className="text-center mt-4">Loading products...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[55vh]">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-5"></div>
+        <p className="text-center text-lg text-gray-700 font-medium">Loading products...</p>
+      </div>
+    );
   }
 
   return (

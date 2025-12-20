@@ -45,5 +45,40 @@ exports.createOrder = async (req, res, next) => {
   user.cart = [];
   await user.save();
   res.status(200).json(order);
-}
+};
 
+exports.getSearchItems = async (req, res, next) => {
+  try {
+    const search = req.query.q;
+    if (!search || search.trim === "") {
+      return res.status(400).json({
+        seccess: false,
+        message: "Search query is required",
+      });
+    }
+
+    // Search across multiple fields
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: search, $options: "i" } },
+        { brand: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ],
+    })
+      .sort({ createdAt: -1 })
+      .limit(20);
+
+    return res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products,
+    });
+  } catch (error) {
+    console.log("Search Error", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error while searching products",
+    });
+  }
+};

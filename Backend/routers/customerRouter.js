@@ -5,6 +5,6 @@ customerRouter.get("/data", customerController.getData);
 customerRouter.post("/cart/:id", customerController.addToCart);
 customerRouter.delete("/cart/:id", customerController.removeFromCart);
 customerRouter.post("/order", customerController.createOrder);
-
+customerRouter.get('/search', customerController.getSearchItems);
 
 module.exports = customerRouter;

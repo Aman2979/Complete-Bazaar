@@ -35,7 +35,6 @@ const AddProduct = () => {
       navigate("/");
     } else {
       const errorData = await response.json();
-      console.log(errorData);
     }
   };
 

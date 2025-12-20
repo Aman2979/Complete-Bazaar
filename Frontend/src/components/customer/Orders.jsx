@@ -15,14 +15,17 @@ const Orders = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <p className="text-center mt-4">Loading products...</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[55vh]">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-5"></div>
+        <p className="text-center text-lg text-gray-700 font-medium">Loading products...</p>
+      </div>
+    );
   }
 
   // Sort orders by createdAt in descending order (most recent first)
   const sortedOrders = orders
-    ? [...orders].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      )
+    ? [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     : [];
 
   return (
@@ -36,7 +39,9 @@ const Orders = () => {
           </p>
         </div>
       ) : (
-        <div className="flex flex-col gap-4"> {/* Vertical, one per row with spacing */}
+        <div className="flex flex-col gap-4">
+          {" "}
+          {/* Vertical, one per row with spacing */}
           {sortedOrders.map((order) => (
             <Order key={order._id} order={order} products={products} />
           ))}
