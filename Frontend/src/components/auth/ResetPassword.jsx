@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
 
-  // ❌ Block direct access
+  // Block direct access
   if (!email) {
     return (
       <div className="text-center mt-10 text-red-600 font-semibold">

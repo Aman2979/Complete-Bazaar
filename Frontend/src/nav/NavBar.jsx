@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store/slices/authSlice";
-import { FaShoppingCart, FaSignOutAlt, FaPlus, FaClipboardList, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaSignOutAlt,
+  FaPlus,
+  FaClipboardList,
+  FaSignInAlt,
+  FaUserPlus,
+} from "react-icons/fa";
 import SearchBox from "../components/customer/searchBar/SearchBox";
 
 const NavBar = () => {
@@ -51,7 +58,7 @@ const NavBar = () => {
                 <FaClipboardList className="text-blue-200" />
                 Orders
               </Link>
-              < SearchBox />
+              <SearchBox />
             </div>
           )}
         </div>
@@ -85,7 +92,6 @@ const NavBar = () => {
           </div>
         )}
       </div>
-        
     </nav>
   );
 };

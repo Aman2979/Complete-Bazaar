@@ -100,7 +100,7 @@ export const fetchSearchResults = createAsyncThunk(
         `http://localhost:3000/api/customer/search?q=${query}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -117,7 +117,6 @@ export const fetchSearchResults = createAsyncThunk(
     }
   }
 );
-
 
 const customerSlice = createSlice({
   name: "customer",
@@ -155,7 +154,7 @@ const customerSlice = createSlice({
       })
       .addCase(fetchSearchResults.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = action.payload; 
+        state.products = action.payload;
       })
       .addCase(fetchSearchResults.rejected, (state, action) => {
         state.isLoading = false;

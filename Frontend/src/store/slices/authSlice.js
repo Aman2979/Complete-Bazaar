@@ -24,7 +24,6 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("userType");
     },
-    
   },
 });
 

@@ -18,18 +18,27 @@ const CartProducts = ({ product }) => {
       />
       <div className="flex-1 flex flex-col justify-between min-w-0">
         <div className="flex items-center justify-between">
-          <h2 className="text-md font-semibold text-gray-800 truncate">{product.name}</h2>
+          <h2 className="text-md font-semibold text-gray-800 truncate">
+            {product.name}
+          </h2>
         </div>
         <div className="flex items-center gap-3 mt-1">
           {product.brand && (
-            <span className="text-xs text-blue-700 bg-blue-100 px-2 py-0.5 rounded">{product.brand}</span>
+            <span className="text-xs text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
+              {product.brand}
+            </span>
           )}
           {product.category && (
-            <span className="text-xs text-purple-700 bg-purple-100 px-2 py-0.5 rounded">{product.category}</span>
+            <span className="text-xs text-purple-700 bg-purple-100 px-2 py-0.5 rounded">
+              {product.category}
+            </span>
           )}
         </div>
         <div className="flex items-center gap-1 mt-1">
-          <span className="text-sm font-medium text-gray-700"> ₹{product.price}</span>
+          <span className="text-sm font-medium text-gray-700">
+            {" "}
+            ₹{product.price}
+          </span>
         </div>
       </div>
       <button
