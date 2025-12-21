@@ -21,7 +21,9 @@ const CustomerHome = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[55vh]">
         <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-5"></div>
-        <p className="text-center text-lg text-gray-700 font-medium">Loading products...</p>
+        <p className="text-center text-lg text-gray-700 font-medium">
+          Loading products...
+        </p>
       </div>
     );
   }
@@ -29,25 +31,11 @@ const CustomerHome = () => {
   return (
     <div className="container mx-auto px-4 py-6">
       <ErrorMessages errors={errorMessages} />
-      {!products || products.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-tr from-blue-50 to-white rounded-xl shadow-md mt-10">
-          <h2 className="text-3xl font-extrabold text-blue-700 mb-4 drop-shadow-sm">
-            Welcome to Complete Bazaar!
-          </h2>
-          <p className="text-gray-700 text-lg font-semibold mb-2">
-            Your one-stop marketplace for all your needs.
-          </p>
-          <p className="text-gray-500 mb-3 text-center max-w-xl">
-            Start exploring our curated selection of products and enjoy seamless, secure shopping.
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
-          {products.map((product) => (
-            <CustomerProducts key={product._id} product={product} cart={cart} />
-          ))}
-        </div>
-      )}
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
+        {products.map((product) => (
+          <CustomerProducts key={product._id} product={product} cart={cart} />
+        ))}
+      </div>
     </div>
   );
 };

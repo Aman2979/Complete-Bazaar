@@ -5,7 +5,7 @@ import ErrorMessages from "../common/ErrorMessages";
 import Order from "./Order";
 
 const Orders = () => {
-  const { products, orders, isLoading, errorMessages } = useSelector(
+  const { products, orders, isLoading, errorMessages, token } = useSelector(
     (state) => state.customer
   );
   const dispatch = useDispatch();

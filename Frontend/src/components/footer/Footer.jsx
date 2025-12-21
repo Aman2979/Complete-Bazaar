@@ -17,8 +17,8 @@ const Footer = () => {
             Complete Bazaar
           </h2>
           <p className="text-sm leading-relaxed">
-            Your one-stop destination for quality products at the best prices.
-            Shop smart, shop fast.
+            Your one-stop marketplace for all your needs.
+            Browse our top products and find your next favorite—happy shopping!
           </p>
         </div>
 

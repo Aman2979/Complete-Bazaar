@@ -42,10 +42,27 @@ const PublicHome = () => {
           </p>
         </div>
       ) : (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
-          {products.map((product) => (
-            <CustomerProducts key={product._id} product={product} />
-          ))}
+        <div>
+          {/* Welcome Banner */}
+          <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-8 flex flex-col items-center justify-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-3">
+              Welcome to Complete Bazaar!
+            </h2>
+            <p className="text-gray-700 text-lg font-semibold mb-1 text-center">
+              Your one-stop marketplace for all your needs.
+            </p>
+            <p className="text-gray-400 text-base text-center max-w-lg">
+              Browse our top products and find your next favorite—happy shopping!
+            </p>
+          </div>
+
+          
+          {/* Product Grid */}
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
+            {products.map((product) => (
+              <CustomerProducts key={product._id} product={product} />
+            ))}
+          </div>
         </div>
       )}
     </div>

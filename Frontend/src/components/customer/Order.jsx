@@ -1,5 +1,3 @@
-import React from "react";
-
 const Order = ({ order, products }) => {
   const productsInOrder = order.products.map((productId) => {
     return products.find((p) => p._id === productId);

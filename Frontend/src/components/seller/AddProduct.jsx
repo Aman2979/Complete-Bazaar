@@ -79,6 +79,7 @@ const AddProduct = () => {
         />
         <input
           type="number"
+          step="0.1"
           placeholder="Product Rating"
           ref={ratingRef}
           min={0}
