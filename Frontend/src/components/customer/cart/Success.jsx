@@ -1,7 +1,23 @@
 import { FaCheckCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { placeOrder } from "../../../store/slices/customerSlice";
 
 const Success = () => {
+  const dispatch = useDispatch();
+  const [params] = useSearchParams();
+  const sessionId = params.get("session_id");
+
+  const hasPlacedOrder = useRef(false);
+
+  useEffect(() => {
+    if (!sessionId || hasPlacedOrder.current) return;
+
+    hasPlacedOrder.current = true;
+    dispatch(placeOrder({ sessionId }));
+  }, [dispatch, sessionId]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">

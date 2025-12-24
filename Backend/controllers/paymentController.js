@@ -40,7 +40,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 exports.createCheckoutSession = async (req, res) => {
   try {
     const { products } = req.body;
-    // products = [{ productId, quantity }]
 
     if (!products || products.length === 0) {
       return res.status(400).json({ message: "Products are required" });
@@ -63,7 +62,7 @@ exports.createCheckoutSession = async (req, res) => {
           product_data: {
             name: product.name,
           },
-          unit_amount: Math.round(product.price * 100), // DB price
+          unit_amount: Math.round(product.price * 100),
         },
         quantity: item.quantity,
       });
@@ -73,8 +72,15 @@ exports.createCheckoutSession = async (req, res) => {
       payment_method_types: ["card"],
       mode: "payment",
       line_items: lineItems,
-      success_url: `${process.env.CLIENT_URL}/success`,
+
+      // IMPORTANT: send session_id to frontend
+      success_url: `${process.env.CLIENT_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
+
+      //Optional but recommended
+      metadata: {
+        products: JSON.stringify(products),
+      },
     });
 
     res.status(200).json({ url: session.url });
@@ -83,3 +89,4 @@ exports.createCheckoutSession = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+

@@ -76,27 +76,21 @@ export const removeFromCart = createAsyncThunk(
 );
 
 /* =========== ORDER ============= */
-export const placeOrder = createAsyncThunk(
-  "customer/placeOrder",
-  async () => {
-    const token = localStorage.getItem("token");
+export const placeOrder = createAsyncThunk("customer/placeOrder", async () => {
+  const token = localStorage.getItem("token");
 
-    const response = await fetch(
-      "http://localhost:3000/api/customer/order",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  const response = await fetch("http://localhost:3000/api/customer/order", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    const body = await response.json();
+  const body = await response.json();
 
-    if (response.ok) return body;
-    throw new Error(body.error);
-  }
-);
+  if (response.ok) return body;
+  throw new Error(body.error);
+});
 
 /* ===================== SEARCH ===================== */
 export const fetchSearchResults = createAsyncThunk(

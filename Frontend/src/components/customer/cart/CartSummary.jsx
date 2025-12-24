@@ -6,6 +6,14 @@ const CartSummary = ({ products }) => {
   const dispatch = useDispatch();
   const { checkoutUrl, isLoading } = useSelector((state) => state.customer);
 
+  /* Redirect to Stripe — MUST be before return */
+  useEffect(() => {
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    }
+  }, [checkoutUrl]);
+
+  /* Safe early return AFTER hooks */
   if (!products || products.length === 0) return null;
 
   const totalPrice = products.reduce((acc, product) => acc + product.price, 0);
@@ -15,18 +23,11 @@ const CartSummary = ({ products }) => {
 
   const handleOrder = () => {
     const checkoutProducts = products.map((item) => ({
-    productId: item._id,
-    quantity: item.quantity || 1, // default quantity
-  }));
+      productId: item._id,
+      quantity: item.quantity || 1,
+    }));
     dispatch(createCheckoutSession(checkoutProducts));
   };
-
-  /* 🔁 Redirect to Stripe */
-  useEffect(() => {
-    if (checkoutUrl) {
-      window.location.href = checkoutUrl;
-    }
-  }, [checkoutUrl]);
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200 sticky top-6">
