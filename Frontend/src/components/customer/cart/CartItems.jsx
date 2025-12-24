@@ -1,4 +1,5 @@
 import CartProducts from "./CartProducts";
+import { Link } from "react-router-dom";
 
 const CartItems = ({ products }) => {
   if (!products || products.length === 0) {
@@ -10,6 +11,12 @@ const CartItems = ({ products }) => {
         <p className="text-gray-500 mb-4">
           Start by adding your first product to showcase it here!
         </p>
+        <Link
+          to="/"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition font-semibold mt-2"
+        >
+          Continue Shopping
+        </Link>
       </div>
     );
   }

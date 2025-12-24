@@ -65,7 +65,7 @@ const CustomerProducts = ({ product, cart }) => {
         <div className="mt-auto w-full flex gap-2">
           {isInCart ? (
             <button
-              className="w-1/2 bg-red-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-60 transition flex items-center justify-center gap-2"
+              className="w-50 bg-red-600 text-white py-2 rounded-lg font-semibold shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-60 transition flex items-center justify-center gap-2"
               type="button"
               onClick={() => handleRemoveFromCart(product._id)}
             >
