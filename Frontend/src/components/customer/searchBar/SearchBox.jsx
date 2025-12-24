@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { fetchSearchResults } from "../../../store/slices/customerSlice";
+import { fetchCustomerData, fetchSearchResults } from "../../../store/slices/customerSlice";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -12,13 +12,11 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (query.trim()) {
-        dispatch(fetchSearchResults(query));
-      }
-    }, 500);
-
-    return () => clearTimeout(timer);
+    if (query.trim() === "") {
+      dispatch(fetchCustomerData());
+    } else {
+      dispatch(fetchSearchResults(query));
+    }
   }, [query, dispatch]);
 
   return (

@@ -50,7 +50,7 @@ exports.createOrder = async (req, res, next) => {
 exports.getSearchItems = async (req, res, next) => {
   try {
     const search = req.query.q;
-    if (!search || search.trim === "") {
+    if (!search || search.trim() === "") {
       return res.status(400).json({
         seccess: false,
         message: "Search query is required",
@@ -63,7 +63,6 @@ exports.getSearchItems = async (req, res, next) => {
         { name: { $regex: search, $options: "i" } },
         { brand: { $regex: search, $options: "i" } },
         { category: { $regex: search, $options: "i" } },
-        { description: { $regex: search, $options: "i" } },
       ],
     })
       .sort({ createdAt: -1 })

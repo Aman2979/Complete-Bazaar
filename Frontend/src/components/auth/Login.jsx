@@ -28,7 +28,7 @@ const Login = () => {
     });
     const data = await res.json();
     if (res.status === 200) {
-      dispatch(login(data))
+      dispatch(login(data));
       navigate("/");
     } else if (res.status === 401) {
       setErrorMessages(data.errorMessages);
@@ -57,12 +57,6 @@ const Login = () => {
           required
           className="border border-gray-300 rounded-md px-4 py-2"
         />
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
         <div className="text-right">
           <Link
             to="/forgetPassword"
@@ -71,6 +65,12 @@ const Login = () => {
             Forgot Password?
           </Link>
         </div>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          Login
+        </button>
       </form>
     </div>
   );

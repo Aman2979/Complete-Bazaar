@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorMessages from "../common/ErrorMessages.jsx";
 import { fetchCustomerData } from "../../store/slices/customerSlice.js";
 import CustomerProducts from "./CustomerProducts.jsx";
+import Footer from "../footer/Footer.jsx";
 
 const CustomerHome = () => {
   const { products, cart, isLoading, errorMessages } = useSelector(
@@ -29,14 +30,17 @@ const CustomerHome = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <ErrorMessages errors={errorMessages} />
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
-        {products.map((product) => (
-          <CustomerProducts key={product._id} product={product} cart={cart} />
-        ))}
+    <>
+      <div className="container mx-auto px-4 py-6">
+        <ErrorMessages errors={errorMessages} />
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
+          {products.map((product) => (
+            <CustomerProducts key={product._id} product={product} cart={cart} />
+          ))}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
