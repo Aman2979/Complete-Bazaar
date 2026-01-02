@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorMessages from "../common/ErrorMessages.jsx";
 import CustomerProducts from "./PublicProducts.jsx";
 import { fetchPublicProducts } from "../../store/slices/publicSlice.js";
+import PublicFooter from "./footer/PublicFooter.jsx";
 
 const PublicHome = () => {
   const { products, errorMessages, isLoading } = useSelector(

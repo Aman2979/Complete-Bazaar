@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorMessages from "../common/ErrorMessages.jsx";
 import { fetchCustomerData } from "../../store/slices/customerSlice.js";
 import CustomerProducts from "./CustomerProducts.jsx";
-import Footer from "../footer/Footer.jsx";
 
 const CustomerHome = () => {
   const { products, cart, isLoading, errorMessages } = useSelector(
@@ -39,7 +38,6 @@ const CustomerHome = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
