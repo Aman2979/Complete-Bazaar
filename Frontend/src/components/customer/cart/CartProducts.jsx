@@ -1,6 +1,7 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../../store/slices/customerSlice";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CartProducts = ({ product }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const CartProducts = ({ product }) => {
   return (
     <div className="bg-white flex items-center gap-4 rounded-xl shadow border border-gray-200 hover:shadow-md transition p-4">
       <img
-        src={"http://localhost:3000/" + product.imageUrl}
+        src={`${BASE_URL}/${product.imageUrl}`}
         alt={product.name}
         className="w-20 h-20 object-contain rounded-lg bg-gray-50 flex-shrink-0"
       />

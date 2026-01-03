@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AddProduct = () => {
   const nameRef = useRef();
@@ -24,7 +25,7 @@ const AddProduct = () => {
     formData.append("rating", parseFloat(ratingRef.current.value));
     formData.append("image", imageRef.current.files[0]);
 
-    const response = await fetch("http://localhost:3000/api/seller/products", {
+    const response = await fetch(`${BASE_URL}/api/seller/products`, {
       method: "POST",
       body: formData,
       headers: {

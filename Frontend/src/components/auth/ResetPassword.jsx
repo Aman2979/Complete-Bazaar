@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ErrorMessages from "../common/ErrorMessages";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ResetPassword = () => {
   const location = useLocation();
@@ -30,7 +31,7 @@ const ResetPassword = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/auth/reset-password`,
+        `${BASE_URL}/api/auth/reset-password`,
         {
           method: "POST",
           headers: {

@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PublicProducts = ({ product }) => {
   return (
@@ -8,7 +9,7 @@ const PublicProducts = ({ product }) => {
         style={{ minHeight: "14rem", maxHeight: "14rem" }}
       >
         <img
-          src={`http://localhost:3000/${product.imageUrl}`}
+          src={`${BASE_URL}/${product.imageUrl}`}
           alt={product.name}
           className="max-h-56 max-w-full object-contain mx-auto transition-transform duration-200 group-hover:scale-105"
         />

@@ -2,6 +2,7 @@ import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../store/slices/customerSlice.js";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const CustomerProducts = ({ product, cart }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const CustomerProducts = ({ product, cart }) => {
         style={{ minHeight: "14rem", maxHeight: "14rem" }}
       >
         <img
-          src={"http://localhost:3000/" + product.imageUrl}
+          src={`${BASE_URL}/${product.imageUrl}`}
           alt={product.name}
           className="max-h-56 max-w-full object-contain mx-auto transition-transform duration-200 group-hover:scale-105"
           style={{ minHeight: "8rem", maxHeight: "14rem", width: "auto" }}

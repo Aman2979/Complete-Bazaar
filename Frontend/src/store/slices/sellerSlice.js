@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const initialState = {
   products: [],
   isLoading: false,
@@ -10,7 +12,7 @@ export const fetchSellerProducts = createAsyncThunk(
   "seller/fetchSellerProducts",
   async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/api/seller/products", {
+    const response = await fetch(`${BASE_URL}/api/seller/products`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

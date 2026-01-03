@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../common/ErrorMessages";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Signup = () => {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -17,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     setErrorMessages([]);
 
-    fetch("http://localhost:3000/api/auth/signup", {
+    fetch(`${BASE_URL}/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

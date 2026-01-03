@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const initialState = {
   products: [],
@@ -14,7 +15,7 @@ export const fetchCustomerData = createAsyncThunk(
   "customer/fetchCustomerData",
   async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:3000/api/customer/data", {
+    const response = await fetch(`${BASE_URL}/api/customer/data`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,7 +38,7 @@ export const addToCart = createAsyncThunk(
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:3000/api/customer/cart/${productId}`,
+      `${BASE_URL}/api/customer/cart/${productId}`,
       {
         method: "POST",
         headers: {
@@ -59,7 +60,7 @@ export const removeFromCart = createAsyncThunk(
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      `http://localhost:3000/api/customer/cart/${productId}`,
+      `${BASE_URL}/api/customer/cart/${productId}`,
       {
         method: "DELETE",
         headers: {
@@ -79,7 +80,7 @@ export const removeFromCart = createAsyncThunk(
 export const placeOrder = createAsyncThunk("customer/placeOrder", async () => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://localhost:3000/api/customer/order", {
+  const response = await fetch(`${BASE_URL}/api/customer/order`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -100,7 +101,7 @@ export const fetchSearchResults = createAsyncThunk(
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        `http://localhost:3000/api/customer/search?q=${query}`,
+        `${BASE_URL}/api/customer/search?q=${query}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -128,7 +129,7 @@ export const createCheckoutSession = createAsyncThunk(
   async (products, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/api/payment/create-checkout-session",
+        `${BASE_URL}/api/payment/create-checkout-session`,
         {
           method: "POST",
           headers: {

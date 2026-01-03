@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import ErrorMessages from "../common/ErrorMessages";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/authSlice";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -16,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     setErrorMessages([]);
 
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

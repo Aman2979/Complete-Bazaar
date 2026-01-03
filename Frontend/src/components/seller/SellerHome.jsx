@@ -4,6 +4,7 @@ import { fetchSellerProducts } from "../../store/slices/sellerSlice.js";
 import ErrorMessages from "../common/ErrorMessages.jsx";
 import SelllerProducts from "./SelllerProducts.jsx";
 import { deleteProduct } from "../../store/slices/sellerSlice.js";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SellerHome = () => {
   const { products, isLoading, errorMessages } = useSelector(
@@ -18,7 +19,7 @@ const SellerHome = () => {
   const handleDeleteProduct = async (productId) => {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `http://localhost:3000/api/seller/products/${productId}`,
+      `${BASE_URL}/api/seller/products/${productId}`,
       {
         method: "DELETE",
         headers: {

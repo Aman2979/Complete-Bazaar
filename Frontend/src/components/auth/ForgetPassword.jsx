@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ErrorMessages from '../common/ErrorMessages';
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const ForgetPassword = () => {
     setErrorMessages([]);
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/auth/forgot-password`, {
+      const response = await fetch(`${BASE_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

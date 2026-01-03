@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const Order = ({ order, products }) => {
   const productsInOrder = order.products.map((productId) => {
     return products.find((p) => p._id === productId);
@@ -43,7 +45,7 @@ const Order = ({ order, products }) => {
             >
               <div className="relative">
                 <img
-                  src={"http://localhost:3000/" + product.imageUrl}
+                  src={`${BASE_URL}/${product.imageUrl}`}
                   alt={product.name}
                   className="w-14 h-14 object-cover rounded-lg shadow border border-gray-200"
                   style={{ minWidth: "3.5rem", minHeight: "3.5rem" }}
